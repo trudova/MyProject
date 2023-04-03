@@ -18,3 +18,4 @@ Feature: Sign up
           """
     And method Post
     Then status 200
+#    open questions ? how to use java here, how to add jdbc
