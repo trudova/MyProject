@@ -1,6 +1,6 @@
 Feature: Tests for public-open home page
   Background: Def URL works as before each
-    Given url "https://api.realworld.io/api/"
+    Given url apiUrl
 
   Scenario: Get all tags
     Given path "tags"
