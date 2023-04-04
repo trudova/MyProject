@@ -23,6 +23,7 @@ Feature: Tests for public-open home page
     Then status 200
 
   Scenario: Get 10 articles from the page parameters in obj
+    * def timeValidator = read('classpath:helpers/timeValidator.js')
     Given params {limit: 10, offset: 0}
     Given path "articles"
     When method Get
@@ -41,3 +42,23 @@ Feature: Tests for public-open home page
     And match each response..favoritesCount == "#number"
 #    for string or nul use ##
     And match each response..bio =="##string"
+    And match each response.articles ==
+    """
+       {
+            "slug": "#string",
+            "title": "#string",
+            "description": "#string",
+            "body": "#string",
+            "tagList": "#array",
+            "createdAt": "#? timeValidator(_)",
+            "updatedAt": "#? timeValidator(_)",
+            "favorited": "#boolean",
+            "favoritesCount": "#number",
+            "author": {
+                "username": "#string",
+                "bio": "##string",
+                "image": "#string",
+                "following": "#boolean"
+            }
+        }
+    """
