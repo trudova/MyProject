@@ -2,11 +2,12 @@
 Feature: Sign up
   Background: register a new User
     * def dataGenerator = Java.type("helpers.DataGenerator")
+    * def randomEmail = dataGenerator.getRendomeEmail()
+    * def randomUserName = dataGenerator.getUserName()
     Given url apiUrl
 
   Scenario: new user sign up
-    * def randomEmail = dataGenerator.getRendomeEmail()
-    * def randomUserName = dataGenerator.getUserName()
+
     Given path 'users'
    And request
           """
@@ -32,3 +33,18 @@ Feature: Sign up
     }
 }
     """
+
+    Scenario: Validate Sign up error message
+      Given path 'users'
+      And request
+          """
+              {
+              "user": {
+                  "email": #(randomEmail),
+                  "password": "123",
+                  "username": #(randomUserName)
+                       }
+               }
+          """
+      And method Post
+      Then status 422
