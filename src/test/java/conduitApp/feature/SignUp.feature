@@ -1,21 +1,34 @@
-@ignore
+
 Feature: Sign up
   Background: register a new User
+    * def dataGenerator = Java.type("helpers.DataGenerator")
     Given url apiUrl
 
   Scenario: new user sign up
-    Given def userData = {"email": "coc21@gmail.com","username": "coc21"}
+    * def randomEmail = dataGenerator.getRendomeEmail()
+    * def randomUserName = dataGenerator.getUserName()
     Given path 'users'
    And request
           """
               {
               "user": {
-                  "email": #(userData.email),
+                  "email": #(randomEmail),
                   "password": "123",
-                  "username": #(userData.username)
+                  "username": #(randomUserName)
                        }
                }
           """
     And method Post
     Then status 200
-#    open questions ? how to use java here, how to add jdbc
+    And match response ==
+    """
+      {
+    "user": {
+        "email": #(randomEmail),
+        "username": #(randomUserName),
+        "bio": "##string",
+        "image": "https://api.realworld.io/images/smiley-cyrus.jpeg",
+        "token": "#string"
+    }
+}
+    """
