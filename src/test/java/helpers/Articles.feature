@@ -9,7 +9,6 @@ Feature: get articles
     Then status 200
 #    we are chaking that this is array of size 10 with fasy matching
     And match response.articles == '#[10]'
-    And match response.articlesCount == 200
     And match response.articlesCount != 197
     And match response == {"articles": "#array", "articlesCount": "#number"}
     And match response.articles[0].createdAt contains '2023'

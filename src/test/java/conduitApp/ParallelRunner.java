@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.intuit.karate.junit5.Karate;
 import org.junit.jupiter.api.Test;
 
-class GetTagsAndArticles {
+class ParallelRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:conduitApp")
+        Results results = com.intuit.karate.Runner.path("classpath:conduitApp")
                 //.outputCucumberJson(true)
                 .parallel(5);
         assertEquals(0, results.getFailCount(), results.getErrorMessages());

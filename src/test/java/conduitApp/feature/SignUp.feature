@@ -41,7 +41,7 @@ Feature: Sign up
               {
               "user": {
                   "email": #(randomEmail),
-                  "password": "123",
+                  "password": "",
                   "username": #(randomUserName)
                        }
                }
