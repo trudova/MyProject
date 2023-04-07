@@ -42,6 +42,9 @@ Feature: Count of the like functionality
 }
     """
     And match response.article.favoritesCount == initialCount +1
+    When path "articles/"+slugId+"/favorite"
+    And method Delete
+    Then status 200
 
   Scenario: Comment articles
     Given path "articles/"+slugId+"/comments"
