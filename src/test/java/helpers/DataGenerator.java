@@ -26,4 +26,20 @@ public class DataGenerator {
         json.put("body",body);
         return json;
     }
+
+    public static JSONObject getRandomComment(){
+        Faker faker = new Faker();
+        String comment = faker.gameOfThrones().quote();
+
+        JSONObject jsonObject = new JSONObject();
+        JSONObject jsonObject1 = new JSONObject();
+        jsonObject1.put("body", comment);
+        jsonObject.put("comment",jsonObject1 );
+        return jsonObject;
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println( getRandomComment());
+//        System.out.println(getRandomArticleValue());
+//    }
 }
