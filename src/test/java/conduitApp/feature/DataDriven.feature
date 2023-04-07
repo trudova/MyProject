@@ -6,6 +6,8 @@ Feature: Sign up
     * def randomUserName = dataGenerator.getUserName()
     Given url apiUrl
 
+
+@parallel=false
   Scenario Outline: Validate Sign up error message
     Given path 'users'
     And request
